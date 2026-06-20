@@ -21,7 +21,7 @@ interface Msg {
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || "/api").replace(/\/$/, "");
 // The medical chatbot (real TinyLlama LoRA model) is served at the backend
 // root, not under /api — strip a trailing /api so both layouts resolve.
-const MEDICAL_SLM_URL = `${API_BASE.replace(/\/api$/, "")}/ai/medical-slm`;
+const MEDICAL_SLM_URL = `${API_BASE}/chat`;
 
 const SUGGESTIONS = [
   "How are my vitals right now?",
@@ -61,12 +61,11 @@ const Chat = () => {
       const resp = await fetch(MEDICAL_SLM_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: messageText, context }),
+        body: JSON.stringify({ message: messageText, context, uid: user?.id }),
       });
       const envelope = await resp.json();
-      // Backend returns {ok, data: {answer, model, fallback, latency_ms}}.
       const payload = envelope?.ok && envelope?.data ? envelope.data : envelope;
-      const reply = payload?.answer || "I couldn't generate a reply right now. Please try again.";
+      const reply = payload?.response || payload?.answer || "I couldn't generate a reply right now. Please try again.";
       setMessages(prev => [...prev, {
         role: "assistant",
         content: reply,

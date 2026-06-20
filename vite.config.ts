@@ -12,17 +12,17 @@ export default defineConfig(() => ({
       // Forward /api/* verbatim. Backend routes are namespaced under /api
       // (e.g. /api/telemetry, /api/simulate, /api/chat) — do NOT rewrite.
       "/api": {
-        target: "http://127.0.0.1:8000",
+        target: "http://127.0.0.1:5000",
         changeOrigin: true,
       },
       // The backend's /health probe lives at the root.
       "/health": {
-        target: "http://127.0.0.1:8000",
+        target: "http://127.0.0.1:5000",
         changeOrigin: true,
       },
       // The medical SLM chatbot endpoint is served at the root (/ai/...).
       "/ai": {
-        target: "http://127.0.0.1:8000",
+        target: "http://127.0.0.1:5000",
         changeOrigin: true,
       },
     },

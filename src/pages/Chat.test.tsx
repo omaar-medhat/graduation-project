@@ -49,11 +49,11 @@ describe("Chat page — medical SLM endpoint", () => {
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalled());
 
-    // Hits the medical SLM endpoint, not /api/chat.
-    expect(fetchMock.mock.calls[0][0]).toMatch(/\/ai\/medical-slm$/);
+    // Hits the chat endpoint.
+    expect(fetchMock.mock.calls[0][0]).toMatch(/\/api\/chat$/);
 
     const body = JSON.parse(fetchMock.mock.calls[0][1].body);
-    expect(body.question).toBe("what should I do for a sore throat");
+    expect(body.message).toBe("what should I do for a sore throat");
     // Live vitals shown in the dashboard are passed as context.
     expect(body.context).toContain("HR 83");
     expect(body.context).toContain("SpO2 97");

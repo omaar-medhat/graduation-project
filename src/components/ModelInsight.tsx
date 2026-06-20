@@ -100,12 +100,11 @@ export function ModelInsight({ riskLabel, anomalyScore }: Props) {
             <RiskIcon className={cn("h-5 w-5", tone.fg)} />
             <span className={cn("text-xl font-bold", tone.fg)}>{tone.label}</span>
           </div>
-          <p className="mt-1 text-[11px] text-muted-foreground">
-            MLP (64→32→16, ReLU)
-            {riskAcc !== undefined && (
-              <> · trained at {(riskAcc * 100).toFixed(1)}% accuracy</>
-            )}
-          </p>
+          {riskAcc !== undefined && (
+            <p className="mt-1 text-[11px] text-muted-foreground">
+              Trained at {(riskAcc * 100).toFixed(1)}% accuracy
+            </p>
+          )}
         </div>
 
         {/* Anomaly Autoencoder card */}
@@ -144,12 +143,11 @@ export function ModelInsight({ riskLabel, anomalyScore }: Props) {
               style={{ width: `${anomalyPct ?? 0}%` }}
             />
           </div>
-          <p className="mt-2 text-[11px] text-muted-foreground">
-            Bottleneck autoencoder (6→4→2→4→6)
-            {anomalyAuc !== undefined && (
-              <> · AUC {anomalyAuc.toFixed(2)}</>
-            )}
-          </p>
+          {anomalyAuc !== undefined && (
+            <p className="mt-2 text-[11px] text-muted-foreground">
+              AUC {anomalyAuc.toFixed(2)}
+            </p>
+          )}
         </div>
       </div>
     </section>

@@ -1,0 +1,17 @@
+
+> pulseguard-ai-web@1.0.0 build
+> vite build
+
+[36mvite v5.4.19 [32mbuilding for production...[36m[39m
+transforming...
+[32m✓[39m 2721 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                   [39m[1m[2m  1.95 kB[22m[1m[22m[2m │ gzip:   0.84 kB[22m
+[2mdist/[22m[35massets/index-C2c563Kx.css    [39m[1m[2m 75.08 kB[22m[1m[22m[2m │ gzip:  12.95 kB[22m
+[2mdist/[22m[36massets/ui-CFvbHuHd.js        [39m[1m[2m103.32 kB[22m[1m[22m[2m │ gzip:  33.93 kB[22m
+[2mdist/[22m[36massets/react-DteGSBJC.js     [39m[1m[2m162.23 kB[22m[1m[22m[2m │ gzip:  52.92 kB[22m
+[2mdist/[22m[36massets/index-DgSzNSZA.js     [39m[1m[2m342.46 kB[22m[1m[22m[2m │ gzip:  99.45 kB[22m
+[2mdist/[22m[36massets/firebase-DHAHildH.js  [39m[1m[2m344.60 kB[22m[1m[22m[2m │ gzip:  73.66 kB[22m
+[2mdist/[22m[36massets/charts-D82xiP_A.js    [39m[1m[2m394.33 kB[22m[1m[22m[2m │ gzip: 106.99 kB[22m
+[32m✓ built in 46.60s[39m

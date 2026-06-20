@@ -85,6 +85,7 @@ def test_sensor_uses_device_pairing(app, client, monkeypatch):
 
 def test_sensor_no_target_user_returns_400(client, monkeypatch):
     monkeypatch.delenv("FIREBASE_ACTIVE_UID", raising=False)
+    monkeypatch.delenv("DEFAULT_DEMO_UID", raising=False)
     r = client.post("/update_telemetry", json={**ARDUINO, "device_id": "unpaired"})
     assert r.status_code == 400
     assert r.get_json()["error"]["code"] == "NO_TARGET_USER"

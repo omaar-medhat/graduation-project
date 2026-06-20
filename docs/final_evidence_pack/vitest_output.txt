@@ -1,0 +1,43 @@
+
+> pulseguard-ai-web@1.0.0 test
+> vitest run
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90mC:/Users/DELL/Desktop/last/grad_trial[39m
+
+[90mstderr[2m | src/components/AlertSummary.test.tsx[2m > [22m[2mAlertSummary[2m > [22m[2mrenders the all-clear state when no alerts exist
+[22m[39m⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ [32m✓[39m src/components/HealthInsights.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 265[2mms[22m[39m
+ [32m✓[39m src/components/ErrorBoundary.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 292[2mms[22m[39m
+ [32m✓[39m src/components/AlertSummary.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 419[2mms[22m[39m
+ [32m✓[39m src/components/RiskHeroCard.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 345[2mms[22m[39m
+ [32m✓[39m src/pages/Chat.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 296[2mms[22m[39m
+[90mstderr[2m | src/pages/Index.test.tsx[2m > [22m[2mDashboard — Firebase-backed single source of truth[2m > [22m[2mrenders cards (incl. blood pressure) from the vitals contract
+[22m[39m⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ [32m✓[39m src/pages/Index.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 610[2mms[22m[39m
+   [33m[2m✓[22m[39m Dashboard — Firebase-backed single source of truth[2m > [22mrenders cards (incl. blood pressure) from the vitals contract [33m 327[2mms[22m[39m
+ [32m✓[39m src/hooks/useLiveTelemetry.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 3414[2mms[22m[39m
+   [33m[2m✓[22m[39m useLiveTelemetry — Firebase-backed[2m > [22mflips from disconnected to connected when the API says so [33m 1572[2mms[22m[39m
+   [33m[2m✓[22m[39m useLiveTelemetry — Firebase-backed[2m > [22mkeeps the last known reading and marks offline when the backend fails [33m 1564[2mms[22m[39m
+ [32m✓[39m src/lib/health-data.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+ [32m✓[39m src/components/MetricCard.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 198[2mms[22m[39m
+ [32m✓[39m src/components/StatusBadge.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 90[2mms[22m[39m
+ [32m✓[39m src/components/TelemetrySourceBadge.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 287[2mms[22m[39m
+[90mstderr[2m | src/components/ProactiveAlertCard.test.tsx[2m > [22m[2mProactiveAlertCard[2m > [22m[2msurfaces a proactive card for a current alert
+[22m[39m⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ [32m✓[39m src/components/ProactiveAlertCard.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 253[2mms[22m[39m
+ [32m✓[39m src/integrations/firebase/client.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/pages/Profile.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 224[2mms[22m[39m
+ [32m✓[39m src/test/example.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m15 passed[39m[22m[90m (15)[39m
+[2m      Tests [22m [1m[32m79 passed[39m[22m[90m (79)[39m
+[2m   Start at [22m 14:30:38
+[2m   Duration [22m 17.03s[2m (transform 3.20s, setup 9.71s, collect 16.12s, tests 6.74s, environment 51.86s, prepare 15.53s)[22m
+

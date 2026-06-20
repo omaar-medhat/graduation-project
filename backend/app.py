@@ -1549,33 +1549,45 @@ def create_app() -> Flask:
     @limiter.limit(os.environ.get("RATE_LIMIT_TELEMETRY", "60 per minute"))
     def update_telemetry_legacy():
         nonlocal _arduino_latest
-        payload = request.get_json(silent=True) or {}
+        payload = request.get_json(force=True, silent=True)
         if not payload:
+            payload = request.form.to_dict()
+        if not payload:
+            raw = request.get_data(as_text=True)
+            logger.warning("update_telemetry: empty payload, raw=%r content_type=%s", raw[:200] if raw else "", request.content_type)
             return jsonify({"status": "error", "message": "No data received"}), 400
+
+        logger.info("update_telemetry RAW payload: %s content_type=%s", payload, request.content_type)
 
         now_ms = int(time.time() * 1000)
         _arduino_latest = {"ok": True, "ts": now_ms, "data": payload}
 
-        # Convert old Arduino format → new telemetry schema
-        temp_f = payload.get("temperature", 0)
-        temp_c = round((temp_f - 32) * 5 / 9, 1) if temp_f and temp_f > 0 else None
+        # Convert old Arduino format → new telemetry schema.
+        # Support both temperature_c (Celsius direct) and temperature (Fahrenheit).
+        temp_c = payload.get("temperature_c")
+        if temp_c is None:
+            temp_f = payload.get("temperature", 0)
+            temp_c = round((temp_f - 32) * 5 / 9, 1) if temp_f and temp_f > 0 else None
 
         telemetry = {
-            "heart_rate": payload.get("heart_rate"),
-            "spo2": payload.get("spo2"),
+            "heart_rate": payload.get("heart_rate") or payload.get("heartRate"),
+            "spo2": payload.get("spo2") or payload.get("SpO2") or payload.get("oxygen"),
             "temperature_c": temp_c,
             "steps": payload.get("steps", 0),
             "sleep_duration_sec": payload.get("sleep_duration", 0),
-            "battery_level": payload.get("battery_level"),
+            "battery_level": payload.get("battery_level") or payload.get("battery"),
             "fall_alert": payload.get("fall_alert", False),
             "source": "real_bracelet",
             "timestamp": now_ms,
         }
 
+        logger.info("update_telemetry MAPPED telemetry: %s", telemetry)
+
         # Feed into the existing analysis + storage pipeline
         try:
             analysis = analyze(telemetry)
         except TelemetryValidationError as exc:
+            logger.warning("update_telemetry VALIDATION FAILED: %s", exc)
             return err("INVALID_INPUT", str(exc), status=400)
 
         telemetry["risk_level"] = analysis["risk_level"]
@@ -1600,8 +1612,9 @@ def create_app() -> Flask:
         assigned_uid = (
             firebase.read_device_assigned_uid(device_id) if device_id else None
         )
-        demo_uid = os.environ.get("FIREBASE_ACTIVE_UID")  # demo/dev fallback only
-        uid = explicit_uid or assigned_uid or demo_uid
+        frontend_uid = _last_frontend_uid.get("uid")
+        demo_uid = os.environ.get("FIREBASE_ACTIVE_UID") or os.environ.get("DEFAULT_DEMO_UID")
+        uid = explicit_uid or assigned_uid or frontend_uid or demo_uid
         if not uid:
             return err(
                 "NO_TARGET_USER",
