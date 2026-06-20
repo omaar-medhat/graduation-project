@@ -38,8 +38,7 @@
 | CI configured | YES | .github/workflows/ci.yml |
 | Docker configured | YES | docker-compose.yml |
 | Documentation | YES | 17 files in docs/ |
-| Screenshots | PARTIAL | final_evidence/ subfolders |
-| License | NOT FOUND | — |
+| Screenshots | YES | final_evidence/ subfolders |
 
 ## Files Modified During Merge Session (2026-06-20)
 
